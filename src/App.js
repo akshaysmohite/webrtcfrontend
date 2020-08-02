@@ -1,21 +1,17 @@
 import React from 'react';
-import './App.css';
-import Greet from './components/greet'
-import Welcome from './components/Welcome'
-import Hello from './components/Hello'
-import State from './components/State'
-import Counter from './components/Counter'
-import Click from './components/Click'
-import EventBind from './components/EventBind'
+import { Route, Switch, Redirect } from "react-router-dom";
+import Navbar from './components/layouts/Navbar';
+import Footer from './components/layouts/Footer';
+import Login from './components/auth/Login';
+
 function App() {
   return (
     <div className="App">
-      <Greet name="Vikrant Mohite"/>
-      <Welcome name="kappu"/>
-      <Hello/>
-      <State/>
-      <Counter/>
-      <Click/>
+      <Navbar />
+      <Switch>
+        <Route path='/login' component={Login} />
+      </Switch>
+      <Footer />
     </div>
   );
 }
