@@ -1,19 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Route, Switch, Redirect } from "react-router-dom";
 import Navbar from './components/layouts/Navbar';
 import Footer from './components/layouts/Footer';
-import Login from './components/auth/Login';
+import Login from './components/user/Login';
+import auth from "./services/authService";
 
-function App() {
-  return (
-    <div className="App">
-      <Navbar />
-      <Switch>
-        <Route path='/login' component={Login} />
-      </Switch>
-      <Footer />
-    </div>
-  );
+class App extends Component {
+    state = {};
+
+    componentDidMount() {
+        const user = auth.getCurrentUser();
+        this.setState({ user });
+    }
+
+    render() {
+        const { user } = this.state;
+        return (
+            <div className="App">
+                <Navbar />
+                <Switch>
+                    <Route path='/login' component={Login} />
+                </Switch>
+                <Footer />
+            </div>
+        );
+    }
 }
 
 export default App;
